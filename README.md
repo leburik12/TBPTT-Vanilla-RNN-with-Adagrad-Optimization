@@ -1,6 +1,3 @@
-# TBPTT-Vanilla-RNN-with-Adagrad-Optimization: Character-Level Language Modeling
-
-This is the top-level heading (<h1>).
 ## Project Overview
 
 This repository contains a minimal, from-scratch implementation of a Vanilla Recurrent Neural Network (RNN) for character-level language modeling. The setup is designed to investigate foundational sequence learning challenges, utilizing the Truncated Backpropagation Through Time (TBPTT) algorithm for efficient training and the Adagrad optimizer for adaptive parameter updates.
@@ -42,5 +39,43 @@ This method is highly advantageous for the sparse nature of one-hot inputs but i
 The model is trained on the file pride_and_prejudice.txt (or a similar large text corpus). The file must be present in the root directory.
 ### 2.3 Execution
 
-The training and sampling loop is executed via the command line. Note the use of triple backticks (```) to create a fenced code block, which prevents any distortion or misinterpretation of command-line syntax:
-Bash
+The training and sampling loop is executed via the command line.
+
+```bash
+# Ensure pride_and_prejudice.txt is present in the current directory
+$ python rnn_scratch.py 
+```
+
+## 3. Evaluation and Testing Protocol
+### 3.1 Quantitative Evaluation (Perplexity)
+
+The primary metric for validation is Perplexity (PPL), measured on a held-out validation set.
+
+    Formula: PPL=eLavg​.
+
+    Target Performance: A character-level PPL below 20 indicates strong generalization, suggesting the model is choosing among a small, plausible set of next characters.
+
+### 3.2 Qualitative Evaluation (Contextual Inference)
+
+Testing must involve controlled inference:
+
+    Warm-up: Process a full sentence prompt (e.g., "It was a truth universally acknowledged...") using the forward pass to generate a final state hprompt​.
+
+    Sampling: Begin stochastic sampling from the contextual state hprompt​ to test the model's ability to maintain narrative coherence.
+
+## 4. Code Structure
+This table details the functional role of each major component in the repository:
+
+File/Function,Description,Scientific Purpose
+rnn_scratch.py,"Main script containing all training logic, parameter initialization, and the optimization loop.","Serves as the minimal, executable definition of the RNN computational graph and learning process."
+loss_fun(),"Implements the Forward Pass, calculates the Cross-Entropy Loss, and computes all necessary gradients via Backpropagation Through Time (BPTT). Includes gradient clipping.","Defines the objective function and the method for calculating its derivative (∇L), essential for optimization."
+sample(),Implements the stochastic inference step where the next character index is chosen based on the output probability distribution (P(yt​∣ht​)).,"Generates qualitative results (text samples) from the model's learned state, crucial for interpretability."
+rnn_weights_final.npz,"(Generated) Contains the final saved NumPy arrays for the model's parameters (W,b).","Provides a permanent, version-controlled snapshot of the trained model state for future deployment or analysis."
+
+## 5. Collaboration and Contributions
+
+We welcome contributions focusing on architectural stability and performance (e.g., replacing tanh with ReLU or Adagrad with RMSprop).
+
+    Branching: Create a dedicated feature branch from main.
+
+    Pull Request: Submit a Pull Request detailing the scientific rationale, complexity trade-offs, and quantitative performance impact (PPL, stability) of your changes.
