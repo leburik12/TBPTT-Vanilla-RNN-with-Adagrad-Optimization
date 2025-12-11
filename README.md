@@ -1,3 +1,6 @@
+# TBPTT-Vanilla-RNN-with-Adagrad-Optimization: Character-Level Language Modeling
+
+This is the top-level heading (<h1>).
 ## Project Overview
 
 This repository contains a minimal, from-scratch implementation of a Vanilla Recurrent Neural Network (RNN) for character-level language modeling. The setup is designed to investigate foundational sequence learning challenges, utilizing the Truncated Backpropagation Through Time (TBPTT) algorithm for efficient training and the Adagrad optimizer for adaptive parameter updates.
