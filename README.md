@@ -66,11 +66,16 @@ Testing must involve controlled inference:
 ## 4. Code Structure
 This table details the functional role of each major component in the repository:
 
-File/Function,Description,Scientific Purpose
-rnn_scratch.py,"Main script containing all training logic, parameter initialization, and the optimization loop.","Serves as the minimal, executable definition of the RNN computational graph and learning process."
-loss_fun(),"Implements the Forward Pass, calculates the Cross-Entropy Loss, and computes all necessary gradients via Backpropagation Through Time (BPTT). Includes gradient clipping.","Defines the objective function and the method for calculating its derivative (∇L), essential for optimization."
-sample(),Implements the stochastic inference step where the next character index is chosen based on the output probability distribution (P(yt​∣ht​)).,"Generates qualitative results (text samples) from the model's learned state, crucial for interpretability."
-rnn_weights_final.npz,"(Generated) Contains the final saved NumPy arrays for the model's parameters (W,b).","Provides a permanent, version-controlled snapshot of the trained model state for future deployment or analysis."
+### ## 4. **Code Structure**
+
+This table details the functional role of each major component in the repository:
+
+| File/Function | Description | Scientific Purpose |
+| :--- | :--- | :--- |
+| `rnn_scratch.py` | Main script containing all training logic, parameter initialization, and the optimization loop. | Serves as the **minimal, executable definition** of the RNN computational graph and learning process. |
+| `loss_fun()` | Implements the **Forward Pass**, calculates the Cross-Entropy Loss, and computes all necessary gradients via **Backpropagation Through Time (BPTT)**. Includes gradient clipping. | Defines the **objective function** and the method for calculating its derivative ($\nabla \mathcal{L}$), essential for optimization. |
+| `sample()` | Implements the **stochastic inference** step where the next character index is chosen based on the output probability distribution ($\mathbf{P}(y_t \mid h_t)$). | Generates **qualitative results** (text samples) from the model's learned state, crucial for interpretability. |
+| `rnn_weights_final.npz` | **(Generated)** Contains the final saved NumPy arrays for the model's parameters ($W, b$). | Provides a **permanent, version-controlled snapshot** of the trained model state for future deployment or analysis. |
 
 ## 5. Collaboration and Contributions
 
