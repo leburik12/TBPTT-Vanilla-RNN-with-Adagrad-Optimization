@@ -1,0 +1,13 @@
+pride_and_prejudice.txt
+rnn.py
+character.py
+test.py
+vanillaRnn.py
+
+
+__pycache__/
+*.pyc
+
+.DS_Store
+
+.env
